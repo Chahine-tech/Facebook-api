@@ -1,9 +1,7 @@
-import {IsNotEmpty } from 'class-validator';
+import { IsNotEmpty } from 'class-validator';
 
-export class CreatePostDto{
+export class CreatePostDto {
   @IsNotEmpty()
   message: string;
 
-  @IsNotEmpty()
-  author: string;
 }

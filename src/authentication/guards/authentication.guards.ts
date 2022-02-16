@@ -18,4 +18,4 @@ export class JwtGuard implements CanActivate {
 
         return true;
     }
-}   
+}
