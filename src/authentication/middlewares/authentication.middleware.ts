@@ -2,7 +2,6 @@ import { HttpException, HttpStatus, Injectable, NestMiddleware } from '@nestjs/c
 import { Request, Response, NextFunction } from 'express';
 import { UsersService } from 'src/users/users.service';
 import * as jwt from 'jsonwebtoken';
-import { request } from 'http';
 
 @Injectable()
 export class AuthenticationMiddleware implements NestMiddleware {
@@ -10,7 +9,7 @@ export class AuthenticationMiddleware implements NestMiddleware {
     async use(req, res: Response, next: NextFunction) {
         const { authorization } = req.headers;
         try {
-            const payload = jwt.verify(authorization, 'secret');
+            const payload = jwt.verify(authorization, process.env.secret);
             if (!payload) {
                 throw new HttpException('Unauthorized', HttpStatus.UNAUTHORIZED);
             }
