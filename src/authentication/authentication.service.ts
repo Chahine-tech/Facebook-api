@@ -11,15 +11,15 @@ export class AuthenticationService {
   }
 
   async login(credentialsDto: CredentialsDto) {
-    const { email, id, password } = await this.prisma.user.findUnique({ where: {email: credentialsDto.email} });
-    if (credentialsDto.password!== password) {
+    const { email, id, password } = await this.prisma.user.findUnique({ where: { email: credentialsDto.email } });
+    if (credentialsDto.password !== password) {
       throw new HttpException('Unauthorized', HttpStatus.UNAUTHORIZED);
     }
     return { token: jwt.sign({ id }, process.env.secret), user: { email, id } };
   }
 
   register(credentialsDto: CredentialsDto) {
-    return this.prisma.user.create({data: credentialsDto});
+    return this.prisma.user.create({ data: credentialsDto });
   }
 
 }

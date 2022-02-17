@@ -9,7 +9,7 @@ export class JwtGuard implements CanActivate {
     async canActivate(context: ExecutionContext) {
         const request = context.switchToHttp().getRequest();
         const { authorization: token } = request.headers;
-        if (!token) return false;
+        if (!token) throw new HttpException('Unauthorized', HttpStatus.UNAUTHORIZED);;
 
         const payload = jwt.verify(token, process.env.secret);
         const user = await this.usersService.findUnique({ id: payload['id'] });
