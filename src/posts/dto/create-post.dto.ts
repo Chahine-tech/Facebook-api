@@ -4,4 +4,6 @@ export class CreatePostDto {
   @IsNotEmpty()
   message: string;
 
+  authorId: string;
+
 }

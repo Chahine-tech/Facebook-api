@@ -15,7 +15,7 @@ export class AuthenticationService {
     if (credentialsDto.password!== password) {
       throw new HttpException('Unauthorized', HttpStatus.UNAUTHORIZED);
     }
-    return { token: jwt.sign({ id }, 'secret'), user: { email, id } };
+    return { token: jwt.sign({ id }, process.env.secret), user: { email, id } };
   }
 
   register(credentialsDto: CredentialsDto) {

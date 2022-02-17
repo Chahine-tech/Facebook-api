@@ -7,7 +7,7 @@ import { PrismaService } from '../database/services/prisma.service';
 export class PostsService {
   constructor(private readonly prisma: PrismaService) { }
   create(createPostDto: CreatePostDto) {
-    // return this.prisma.post.create({data: createPostDto})
+    return this.prisma.post.create({ data: createPostDto })
   }
 
   findAll() {
@@ -19,7 +19,7 @@ export class PostsService {
   }
 
   update(id: number, updatePostDto: UpdatePostDto) {
-    return this.prisma.post.update({ where: { id }, data: updatePostDto});
+    return this.prisma.post.update({ where: { id }, data: updatePostDto });
   }
 
   remove(id: number) {
