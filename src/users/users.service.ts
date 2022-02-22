@@ -8,8 +8,8 @@ import { UpdateUserDto } from './dto/update-user.dto';
 export class UsersService {
   constructor(private readonly prisma: PrismaService) { }
 
-  create(createUserDto: CreateUserDto) {
-    return this.prisma.user.create({ data: createUserDto });
+  create(email: string, password: string) {
+    return this.prisma.user.create({ data: { email: email, password: password } });
   }
 
   findAll() {
@@ -24,7 +24,7 @@ export class UsersService {
   }
 
   updateProfile(id: number, updateUserDto: UpdateUserDto) {
-    this.prisma.profile.update({ where: { id }, data: updateUserDto});
+    this.prisma.profile.update({ where: { id }, data: updateUserDto });
   }
 
   remove(id: string) {

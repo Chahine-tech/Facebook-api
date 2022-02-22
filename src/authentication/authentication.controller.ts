@@ -13,6 +13,6 @@ export class AuthenticationController {
   }
   @Post("register")
   Register(@Body() createAuthenticationDto: CredentialsDto) {
-    return this.authenticationService.create(createAuthenticationDto);
+    return this.authenticationService.register(createAuthenticationDto);
   }
 }
